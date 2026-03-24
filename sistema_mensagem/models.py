@@ -35,6 +35,7 @@ class Vacinacao(models.Model):
     vacina = models.ForeignKey(Vacina, on_delete=models.CASCADE)
     data_aplicada = models.DateField()
     data_proxima = models.DateField(blank=True, null=True, editable=False)
+    lembrete_enviado = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if self.data_aplicada and self.vacina:
