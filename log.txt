@@ -1,0 +1,390 @@
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+
+🐶 Pet: Pérola
+💉 Vacina: polivalente V3
+👤 Dono: Luiz
+📱 Telefone: 81983314526
+
+Traceback (most recent call last):
+  File "/home/luiz/petshop/manage.py", line 22, in <module>
+    main()
+    ~~~~^^
+  File "/home/luiz/petshop/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/core/management/base.py", line 420, in run_from_argv
+    self.execute(*args, **cmd_options)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/core/management/base.py", line 464, in execute
+    output = self.handle(*args, **options)
+  File "/home/luiz/petshop/sistema_mensagem/management/commands/send_reminder.py", line 24, in handle
+    vacinas = Vacinacao.objects.filter(
+        data_proxima__lte=amanha,
+        lembrete_enviado=False
+    )
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1542, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1560, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1570, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1676, in add_q
+    clause, _ = self._add_q(q_object, can_reuse)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1708, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1556, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1363, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1842, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'lembrete_enviado' into field. Choices are: data_aplicada, data_proxima, id, pet, pet_id, vacina, vacina_id
+Traceback (most recent call last):
+  File "/home/luiz/petshop/manage.py", line 22, in <module>
+    main()
+    ~~~~^^
+  File "/home/luiz/petshop/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/core/management/base.py", line 420, in run_from_argv
+    self.execute(*args, **cmd_options)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/core/management/base.py", line 464, in execute
+    output = self.handle(*args, **options)
+  File "/home/luiz/petshop/sistema_mensagem/management/commands/send_reminder.py", line 24, in handle
+    vacinas = Vacinacao.objects.filter(
+        data_proxima__lte=amanha,
+        lembrete_enviado=False
+    )
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1542, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1560, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1570, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1676, in add_q
+    clause, _ = self._add_q(q_object, can_reuse)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1708, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1556, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1363, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1842, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'lembrete_enviado' into field. Choices are: data_aplicada, data_proxima, id, pet, pet_id, vacina, vacina_id
+Traceback (most recent call last):
+  File "/home/luiz/petshop/manage.py", line 22, in <module>
+    main()
+    ~~~~^^
+  File "/home/luiz/petshop/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/core/management/base.py", line 420, in run_from_argv
+    self.execute(*args, **cmd_options)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/core/management/base.py", line 464, in execute
+    output = self.handle(*args, **options)
+  File "/home/luiz/petshop/sistema_mensagem/management/commands/send_reminder.py", line 24, in handle
+    vacinas = Vacinacao.objects.filter(
+        data_proxima__lte=amanha,
+        lembrete_enviado=False
+    )
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1542, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1560, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1570, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1676, in add_q
+    clause, _ = self._add_q(q_object, can_reuse)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1708, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1556, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1363, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1842, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'lembrete_enviado' into field. Choices are: data_aplicada, data_proxima, id, pet, pet_id, vacina, vacina_id
+Traceback (most recent call last):
+  File "/home/luiz/petshop/manage.py", line 22, in <module>
+    main()
+    ~~~~^^
+  File "/home/luiz/petshop/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/core/management/base.py", line 420, in run_from_argv
+    self.execute(*args, **cmd_options)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/core/management/base.py", line 464, in execute
+    output = self.handle(*args, **options)
+  File "/home/luiz/petshop/sistema_mensagem/management/commands/send_reminder.py", line 24, in handle
+    vacinas = Vacinacao.objects.filter(
+        data_proxima__lte=amanha,
+        lembrete_enviado=False
+    )
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1542, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1560, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1570, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1676, in add_q
+    clause, _ = self._add_q(q_object, can_reuse)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1708, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1556, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1363, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luiz/petshop/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1842, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'lembrete_enviado' into field. Choices are: data_aplicada, data_proxima, id, pet, pet_id, vacina, vacina_id
+Mensagem enviada para whatsapp:+5581983314526
+Nenhum lembrete.
+Nenhum lembrete.
+Nenhum lembrete.
