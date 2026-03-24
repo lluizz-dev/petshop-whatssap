@@ -34,7 +34,7 @@ class Vacinacao(models.Model):
     pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
     vacina = models.ForeignKey(Vacina, on_delete=models.CASCADE)
     data_aplicada = models.DateField()
-    data_proxima = models.DateField(blank=True, null=True)
+    data_proxima = models.DateField(blank=True, null=True, editable=False)
 
     def save(self, *args, **kwargs):
         if self.data_aplicada and self.vacina:
