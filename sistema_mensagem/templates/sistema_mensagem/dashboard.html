@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="{% static 'sistema_mensagem/style.css' %}">
+    </head>
+    <body>
+        <div class="dashboard">
+            <div class="dashboard-header">
+                <h1>Dashboard</h1>
+            </div>
+
+            <div class="dashboard-content">
+                <!-- Vacinas para amanhã -->
+                <div class="section">
+                    <div class="section-title tomorrow">
+                        Vacinas para amanhã
+                    </div>
+                    <ul class="vaccine-list">
+                        {% for v in amanha %}
+                            <li class="vaccine-item">
+                                <div class="vaccine-info">
+                                    <span class="pet-name">{{ v.pet.nome }}</span>
+                                    <span class="vaccine-name">{{ v.vacina.nome }}</span>
+                                </div>
+                                <span class="status-badge tomorrow">📅 Amanhã</span>
+                            </li>
+                        {% empty %}
+                            <li class="empty-message">✨ Nenhuma vacina programada para amanhã.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Vacinas atrasadas -->
+                <div class="section">
+                    <div class="section-title overdue">
+                        Vacinas atrasadas
+                    </div>
+                    <ul class="vaccine-list">
+                        {% for v in atrasadas %}
+                            <li class="vaccine-item">
+                                <div class="vaccine-info">
+                                    <span class="pet-name">{{ v.pet.nome }}</span>
+                                    <span class="vaccine-name">{{ v.vacina.nome }}</span>
+                                </div>
+                                <span class="status-badge overdue">⏰ Atrasada</span>
+                            </li>
+                        {% empty %}
+                            <li class="empty-message">✅ Nenhuma vacina em atraso. Tudo em dia!</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
