@@ -1,0 +1,204 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9edf2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+/* Dashboard container */
+.dashboard {
+    max-width: 900px;
+    width: 100%;
+    background: white;
+    border-radius: 2rem;
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+/* Header */
+header {
+    background: #1e293b;
+    padding: 1.8rem 2rem;
+    border-bottom: 4px solid #facc15;
+}
+
+.dashboard h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0;
+}
+
+.dashboard h1::before {
+    content: "📊";
+    font-size: 2rem;
+}
+
+/* Content area */
+.dashboard-content {
+    padding: 2rem;
+}
+
+/* Section styling */
+.section {
+    margin-bottom: 2.5rem;
+}
+
+.section:last-child {
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    border-left: 5px solid;
+    padding-left: 1rem;
+}
+
+.section-title.tomorrow {
+    border-left-color: #3b82f6;
+    color: #1e293b;
+}
+
+.section-title.tomorrow::before {
+    content: "🐶";
+    font-size: 1.5rem;
+}
+
+.section-title.overdue {
+    border-left-color: #ef4444;
+    color: #1e293b;
+}
+
+.section-title.overdue::before {
+    content: "⚠️";
+    font-size: 1.5rem;
+}
+
+/* Vaccine list - card grid */
+.vaccine-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.vaccine-item {
+    background: #f8fafc;
+    border-radius: 1rem;
+    padding: 0.9rem 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    transition: all 0.2s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.vaccine-item:hover {
+    background: white;
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transform: translateX(4px);
+}
+
+.vaccine-info {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.pet-name {
+    font-weight: 700;
+    color: #0f172a;
+    font-size: 1.1rem;
+}
+
+.vaccine-name {
+    color: #475569;
+    font-size: 0.95rem;
+    background: #e2e8f0;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2rem;
+}
+
+.empty-message {
+    background: #f1f5f9;
+    border-radius: 1rem;
+    padding: 1.2rem;
+    text-align: center;
+    color: #64748b;
+    font-style: italic;
+    border: 1px dashed #cbd5e1;
+}
+
+/* Badge for additional context (optional, shows status) */
+.status-badge {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25rem 0.7rem;
+    border-radius: 2rem;
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.status-badge.tomorrow {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.status-badge.overdue {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    body {
+        padding: 1rem;
+    }
+
+    .dashboard-header {
+        padding: 1.2rem 1.5rem;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.4rem;
+    }
+
+    .dashboard-content {
+        padding: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
+
+    .vaccine-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+    }
+
+    .status-badge {
+        align-self: flex-start;
+    }
+}
