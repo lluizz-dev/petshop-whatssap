@@ -23,7 +23,7 @@ class Command(BaseCommand):
 
         vacinas = Vacinacao.objects.filter(
             data_proxima__lte=amanha,
-            lembrete_enviado=False
+            notificado=False
         )
 
         if not vacinas:
@@ -48,7 +48,8 @@ Procure a clínica para manter tudo em dia!
                     to=numero
                 )
 
-                v.lembrete_enviado = True
+                v.notificado = True
+                v.data_notificacao = timezone.now()
                 v.save()
 
                 print(f"Mensagem enviada para {numero}")
