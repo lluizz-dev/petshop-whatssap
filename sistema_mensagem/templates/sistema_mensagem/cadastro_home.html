@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área de Cadastro - Petshop</title>
+    <link rel="stylesheet" href="{% static 'sistema_mensagem/cadastro_home.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Área de Cadastro</h1>
+        </div>
+        <div class="content">
+            <div class="options-grid">
+                <a href="{% url 'cadastrar_dono' %}" class="option-card">
+                    <div class="option-icon">👤</div>
+                    <div class="option-title">Cadastrar Dono</div>
+                    <div class="option-description">Adicione um novo tutor</div>
+                </a>
+                <a href="{% url 'cadastrar_especie' %}" class="option-card">
+                    <div class="option-icon">🐾</div>
+                    <div class="option-title">Cadastrar Espécie</div>
+                    <div class="option-description">Registre uma espécie de animal</div>
+                </a>
+                <a href="{% url 'cadastrar_pet' %}" class="option-card">
+                    <div class="option-icon">🐶</div>
+                    <div class="option-title">Cadastrar Pet</div>
+                    <div class="option-description">Adicione um novo animal</div>
+                </a>
+                <a href="{% url 'cadastrar_vacina' %}" class="option-card">
+                    <div class="option-icon">💉</div>
+                    <div class="option-title">Cadastrar Vacina</div>
+                    <div class="option-description">Registre uma vacina disponível</div>
+                </a>
+                <a href="{% url 'cadastrar_vacinacao' %}" class="option-card">
+                    <div class="option-icon">📅</div>
+                    <div class="option-title">Cadastrar Vacinação</div>
+                    <div class="option-description">Aplique uma vacina a um pet</div>
+                </a>
+            </div>
+            <a href="{% url 'dashboard' %}" class="back-link">⬅ Voltar ao Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

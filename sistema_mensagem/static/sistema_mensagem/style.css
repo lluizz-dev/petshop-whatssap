@@ -14,7 +14,6 @@ body {
     padding: 2rem;
 }
 
-/* Dashboard container */
 .dashboard {
     max-width: 900px;
     width: 100%;
@@ -22,17 +21,20 @@ body {
     border-radius: 2rem;
     box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: transform 0.2s ease;
 }
 
-/* Header */
 .dashboard-header {
     background: #1e293b;
-    padding: 1.8rem 2rem;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
     border-bottom: 4px solid #facc15;
 }
 
-.dashboard h1 {
+.dashboard-header h1 {
     font-size: 1.8rem;
     font-weight: 600;
     color: white;
@@ -42,23 +44,39 @@ body {
     margin: 0;
 }
 
-.dashboard h1::before {
+.dashboard-header h1::before {
     content: "📊";
     font-size: 2rem;
 }
 
-/* Content area */
+.btn-cadastro {
+    background: #facc15;
+    color: #1e293b;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.6rem 1.2rem;
+    border-radius: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-cadastro:hover {
+    background: #eab308;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
 .dashboard-content {
     padding: 2rem;
 }
 
-/* Section styling */
 .section {
     margin-bottom: 2.5rem;
-}
-
-.section:last-child {
-    margin-bottom: 0;
 }
 
 .section-title {
@@ -92,7 +110,6 @@ body {
     font-size: 1.5rem;
 }
 
-/* Vaccine list - card grid */
 .vaccine-list {
     list-style: none;
     display: flex;
@@ -150,7 +167,6 @@ body {
     border: 1px dashed #cbd5e1;
 }
 
-/* Badge for additional context (optional, shows status) */
 .status-badge {
     font-size: 0.75rem;
     font-weight: 500;
@@ -170,7 +186,6 @@ body {
     color: #991b1b;
 }
 
-/* Responsive adjustments */
 @media (max-width: 640px) {
     body {
         padding: 1rem;
@@ -178,6 +193,8 @@ body {
 
     .dashboard-header {
         padding: 1.2rem 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .dashboard-header h1 {
