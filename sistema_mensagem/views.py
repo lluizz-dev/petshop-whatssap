@@ -71,7 +71,7 @@ def listar_donos(request):
 
     return render(request, 'sistema_mensagem/listar.html', {
         'objetos': donos,
-        'titulo': '👤 Lista de Donos'
+        'titulo': '👤 Lista de Donos',
     })
 
 def listar_especies(request):
@@ -176,9 +176,117 @@ def detalhar_vacinacao(request, id):
         'campos': campos,
     })
 
-def editar_home(request):
-    return render(request, 'sistema_mensagem/editar_home.html')
+def editar_dono(request, id):
+    dono = get_object_or_404(Dono, id=id)
+    form = DonoForm(request.POST or None, instance=dono)
 
+    if form.is_valid():
+        form.save()
+        return redirect('listar_donos')
 
-def excluir_home(request):
-    return render(request, 'sistema_mensagem/excluir_home.html')
+    return render(request, 'sistema_mensagem/form.html', {
+        'form': form,
+        'titulo': f'✏️ Editar Dono: {dono.nome}'
+    })
+    
+def editar_pet(request, id):
+    pet = get_object_or_404(Pet, id=id)
+    form = PetForm(request.POST or None, instance=pet)
+
+    if form.is_valid():
+        form.save()
+        return redirect('listar_pets')
+
+    return render(request, 'sistema_mensagem/form.html', {
+        'form': form,
+        'titulo': f'✏️ Editar Pet: {pet.nome}'
+    })
+    
+def editar_especie(request, id):
+    especie = get_object_or_404(Especie, id=id)
+    form = EspecieForm(request.POST or None, instance=especie)
+
+    if form.is_valid():
+        form.save()
+        return redirect('listar_especies')
+
+    return render(request, 'sistema_mensagem/form.html', {
+        'form': form,
+        'titulo': f'✏️ Editar Espécie: {especie.nome}'
+    })
+    
+def editar_vacina(request, id):
+    vacina = get_object_or_404(Vacina, id=id)
+    form = VacinaForm(request.POST or None, instance=vacina)
+
+    if form.is_valid():
+        form.save()
+        return redirect('listar_vacinas')
+
+    return render(request, 'sistema_mensagem/form.html', {
+        'form': form,
+        'titulo': f'✏️ Editar Vacina: {vacina.nome}'
+    })
+    
+def editar_vacinacao(request, id):
+    vacinacao = get_object_or_404(Vacinacao, id=id)
+    form = VacinacaoForm(request.POST or None, instance=vacinacao)
+
+    if form.is_valid():
+        form.save()
+        return redirect('listar_vacinacoes')
+
+    return render(request, 'sistema_mensagem/form.html', {
+        'form': form,
+        'titulo': f'✏️ Editar Vacinação: {vacinacao.pet.nome} - {vacinacao.vacina.nome}'
+    })
+    
+def deletar_dono(request, id):
+    dono = get_object_or_404(Dono, id=id)
+    if request.method == 'POST':
+        dono.delete()
+        return redirect('listar_donos')
+    return render(request, 'sistema_mensagem/confirmar_delecao.html', {
+        'objeto': dono,
+        'titulo': f'Confirmar exclusão: {dono.nome}'
+    })
+    
+def deletar_pet(request, id):
+    pet = get_object_or_404(Pet, id=id)
+    if request.method == 'POST':
+        pet.delete()
+        return redirect('listar_pets')
+    return render(request, 'sistema_mensagem/confirmar_delecao.html', {
+        'objeto': pet,
+        'titulo': f'Confirmar exclusão: {pet.nome}'
+    })
+
+def deletar_especie(request, id):
+    especie = get_object_or_404(Especie, id=id)
+    if request.method == 'POST':
+        especie.delete()
+        return redirect('listar_especies')
+    return render(request, 'sistema_mensagem/confirmar_delecao.html', {
+        'objeto': especie,
+        'titulo': f'Confirmar exclusão: {especie.nome}'
+    })
+
+def deletar_vacina(request, id):
+    vacina = get_object_or_404(Vacina, id=id)
+    if request.method == 'POST':
+        vacina.delete()
+        return redirect('listar_vacinas')
+    return render(request, 'sistema_mensagem/confirmar_delecao.html', {
+        'objeto': vacina,
+        'titulo': f'Confirmar exclusão: {vacina.nome}'
+    })
+
+def deletar_vacinacao(request, id):
+    vacinacao = get_object_or_404(Vacinacao, id=id)
+    if request.method == 'POST':
+        vacinacao.delete()
+        return redirect('listar_vacinacoes')
+    return render(request, 'sistema_mensagem/confirmar_delecao.html', {
+        'objeto': vacinacao,
+        'titulo': f'Confirmar exclusão: {vacinacao.pet.nome} - {vacinacao.vacina.nome}'
+    })
