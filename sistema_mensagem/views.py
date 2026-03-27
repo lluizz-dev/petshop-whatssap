@@ -176,9 +176,67 @@ def detalhar_vacinacao(request, id):
         'campos': campos,
     })
 
-def editar_home(request):
-    return render(request, 'sistema_mensagem/editar_home.html')
+def editar_dono(request, id):
+    dono = get_object_or_404(Dono, id=id)
+    form = DonoForm(request.POST or None, instance=dono)
 
+    if form.is_valid():
+        form.save()
+        return redirect('listar_donos')
 
-def excluir_home(request):
-    return render(request, 'sistema_mensagem/excluir_home.html')
+    return render(request, 'sistema_mensagem/form.html', {
+        'form': form,
+        'titulo': '✏️ Editar Dono'
+    })
+    
+def editar_pet(request, id):
+    pet = get_object_or_404(Pet, id=id)
+    form = PetForm(request.POST or None, instance=pet)
+
+    if form.is_valid():
+        form.save()
+        return redirect('listar_pets')
+
+    return render(request, 'sistema_mensagem/form.html', {
+        'form': form,
+        'titulo': '✏️ Editar Pet'
+    })
+    
+def editar_especie(request, id):
+    especie = get_object_or_404(Especie, id=id)
+    form = EspecieForm(request.POST or None, instance=especie)
+
+    if form.is_valid():
+        form.save()
+        return redirect('listar_especies')
+
+    return render(request, 'sistema_mensagem/form.html', {
+        'form': form,
+        'titulo': '✏️ Editar Espécie'
+    })
+    
+def editar_vacina(request, id):
+    vacina = get_object_or_404(Vacina, id=id)
+    form = VacinaForm(request.POST or None, instance=vacina)
+
+    if form.is_valid():
+        form.save()
+        return redirect('listar_vacinas')
+
+    return render(request, 'sistema_mensagem/form.html', {
+        'form': form,
+        'titulo': '✏️ Editar Vacina'
+    })
+    
+def editar_vacinacao(request, id):
+    vacinacao = get_object_or_404(Vacinacao, id=id)
+    form = VacinacaoForm(request.POST or None, instance=vacinacao)
+
+    if form.is_valid():
+        form.save()
+        return redirect('listar_vacinacoes')
+
+    return render(request, 'sistema_mensagem/form.html', {
+        'form': form,
+        'titulo': '✏️ Editar Vacinação'
+    })
