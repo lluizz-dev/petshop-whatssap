@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar exclusão - Petshop</title>
+    <link rel="stylesheet" href="{% static 'sistema_mensagem/confirmar_delecao.css' %}">
+</head>
+<body>
+    <div class="delete-container">
+        <div class="delete-header">
+            <h1>Confirmar exclusão</h1>
+        </div>
+        <div class="delete-content">
+            <div class="warning-card">
+                <p>⚠️ <strong>Atenção!</strong> Esta ação não pode ser desfeita.</p>
+                <p>Tem certeza que deseja excluir permanentemente o seguinte registro?</p>
+            </div>
+
+            <div class="object-info">
+                {{ objeto }}
+            </div>
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="action-buttons">
+                    <button type="submit" class="btn btn-danger">❌ Sim, excluir</button>
+                    <a href="../../" class="btn btn-secondary">⬅ Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
