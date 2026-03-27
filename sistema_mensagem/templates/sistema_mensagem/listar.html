@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Listagem de Registros</title>
+    </head>
+    <body>
+        <h1>{{ titulo }}</h1>
+
+        <ul>
+        {% for obj in objetos %}
+            <li>
+                {{ obj }}
+
+                <a href="{{ obj.id }}/editar/">✏️</a>
+                <a href="{{ obj.id }}/deletar/">❌</a>
+            </li>
+        {% empty %}
+            <li>Nenhum registro encontrado</li>
+        {% endfor %}
+        </ul>
+
+        <a href="/listagem/">⬅ Voltar</a>
+    </body>
+</html>
