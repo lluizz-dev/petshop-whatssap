@@ -36,7 +36,7 @@ class Command(BaseCommand):
             mensagem = f"""
 Olá {v.pet.dono.nome}! 👋
 
-O pet {v.pet.nome} 🐶 precisa tomar a vacina {v.vacina.nome} 💉
+O pet {v.pet.nome} {v.pet.especie.emojis} precisa tomar a vacina {v.vacina.nome} 💉
 
 Procure a clínica para manter tudo em dia!
 """
