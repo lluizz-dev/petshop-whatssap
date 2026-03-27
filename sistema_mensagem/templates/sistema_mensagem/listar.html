@@ -1,26 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Listagem de Registros</title>
-    </head>
-    <body>
-        <h1>{{ titulo }}</h1>
-
-        <ul>
-        {% for obj in objetos %}
-            <li>
-                {{ obj }}
-
-                <a href="{{ obj.id }}/editar/">✏️</a>
-                <a href="{{ obj.id }}/deletar/">❌</a>
-            </li>
-        {% empty %}
-            <li>Nenhum registro encontrado</li>
-        {% endfor %}
-        </ul>
-
-        <a href="/listagem/">⬅ Voltar</a>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titulo }} - Petshop</title>
+    <link rel="stylesheet" href="{% static 'sistema_mensagem/listar.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{{ titulo }}</h1>
+        </div>
+        <div class="content">
+            <ul class="registros-list">
+                {% for obj in objetos %}
+                    <li class="registro-item">
+                        <a href="{{ obj.id }}/" class="registro-nome-link">{{ obj }}</a>
+                        <div class="acoes">
+                            <a href="{{ obj.id }}/editar/" class="btn-acao btn-editar" title="Editar">✏️</a>
+                            <a href="{{ obj.id }}/deletar/" class="btn-acao btn-deletar" title="Deletar">❌</a>
+                        </div>
+                    </li>
+                {% empty %}
+                    <li class="empty-message">Nenhum registro encontrado</li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'listagem_home' %}" class="back-link">⬅ Voltar</a>
+        </div>
+    </div>
+</body>
 </html>

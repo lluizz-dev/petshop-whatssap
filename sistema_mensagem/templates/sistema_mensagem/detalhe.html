@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titulo }} - Petshop</title>
+    <link rel="stylesheet" href="{% static 'sistema_mensagem/detalhe.css' %}">
+</head>
+<body>
+    <div class="detail-container">
+        <div class="detail-header">
+            <h1>{{ titulo }}</h1>
+        </div>
+        <div class="detail-content">
+            <div class="info-card">
+                {% for field, value in campos %}
+                    <div class="info-row">
+                        <div class="info-label">{{ field }}:</div>
+                        <div class="info-value">{{ value|default:"—" }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="action-buttons">
+                <a href="editar/" class="btn btn-editar">✏️ Editar</a>
+                <a href="deletar/" class="btn btn-deletar">❌ Deletar</a>
+                <a href="../../" class="btn btn-voltar">⬅ Voltar à listagem</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

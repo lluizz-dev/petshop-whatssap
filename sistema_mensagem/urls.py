@@ -20,4 +20,11 @@ urlpatterns = [
     path('listagem/pets/', listar_pets, name='listar_pets'),
     path('listagem/vacinas/', listar_vacinas, name='listar_vacinas'),
     path('listagem/vacinacoes/', listar_vacinacoes, name='listar_vacinacoes'),
+    
+    
+    path('listagem/donos/<int:id>/', detalhar_dono, name='detalhar_dono'),
+    path('listagem/especies/<int:id>/', detalhar_especie, name='detalhar_especie'),
+    path('listagem/pets/<int:id>/', detalhar_pet, name='detalhar_pet'),
+    path('listagem/vacinas/<int:id>/', detalhar_vacina, name='detalhar_vacina'),
+    path('listagem/vacinacoes/<int:id>/', detalhar_vacinacao, name='detalhar_vacinacao'),
 ]

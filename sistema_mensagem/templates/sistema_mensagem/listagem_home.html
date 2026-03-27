@@ -1,21 +1,47 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Listagem de Registros</title>
-    </head>
-    <body>
-        <h1>📋 Listagens</h1>
-
-        <ul>
-            <li><a href="{% url 'listar_donos' %}">👤 Donos</a></li>
-            <li><a href="{% url 'listar_especies' %}">🐾 Espécies</a></li>
-            <li><a href="{% url 'listar_pets' %}">🐶 Pets</a></li>
-            <li><a href="{% url 'listar_vacinas' %}">💉 Vacinas</a></li>
-            <li><a href="{% url 'listar_vacinacoes' %}">📅 Vacinações</a></li>
-        </ul>
-
-        <a href="/">⬅ Voltar</a>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem de Registros - Petshop</title>
+    <link rel="stylesheet" href="{% static 'sistema_mensagem/listagem_home.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Listagem de Registros</h1>
+        </div>
+        <div class="content">
+            <div class="options-grid">
+                <a href="{% url 'listar_donos' %}" class="option-card">
+                    <div class="option-icon">👤</div>
+                    <div class="option-title">Donos</div>
+                    <div class="option-description">Visualize todos os tutores</div>
+                </a>
+                <a href="{% url 'listar_especies' %}" class="option-card">
+                    <div class="option-icon">🐾</div>
+                    <div class="option-title">Espécies</div>
+                    <div class="option-description">Veja as espécies cadastradas</div>
+                </a>
+                <a href="{% url 'listar_pets' %}" class="option-card">
+                    <div class="option-icon">🐶</div>
+                    <div class="option-title">Pets</div>
+                    <div class="option-description">Lista de animais</div>
+                </a>
+                <a href="{% url 'listar_vacinas' %}" class="option-card">
+                    <div class="option-icon">💉</div>
+                    <div class="option-title">Vacinas</div>
+                    <div class="option-description">Todas as vacinas disponíveis</div>
+                </a>
+                <a href="{% url 'listar_vacinacoes' %}" class="option-card">
+                    <div class="option-icon">📅</div>
+                    <div class="option-title">Vacinações</div>
+                    <div class="option-description">Histórico de aplicações</div>
+                </a>
+            </div>
+            <a href="{% url 'dashboard' %}" class="back-link">⬅ Voltar ao Dashboard</a>
+        </div>
+    </div>
+</body>
 </html>

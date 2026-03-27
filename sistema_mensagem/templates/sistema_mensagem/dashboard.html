@@ -10,11 +10,16 @@
 <body>
     <div class="dashboard">
         <div class="dashboard-header">
-            <h1>Dashboard</h1>
+        <h1>Dashboard</h1>
+        <div class="header-buttons">
             <a href="{% url 'cadastro_home' %}" class="btn-cadastro">
                 ➕ Cadastro
             </a>
+            <a href="{% url 'listagem_home' %}" class="btn-listagem">
+                📋 Listagem
+            </a>
         </div>
+    </div>
 
         <div class="dashboard-content">
             <!-- Vacinas para amanhã -->
