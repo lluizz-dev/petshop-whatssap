@@ -46,8 +46,10 @@ class Vacinacao(models.Model):
     data_aplicada = models.DateField()
     data_proxima = models.DateField(blank=True, null=True, editable=False)
     
-    notificado = models.BooleanField(default=False)
-    data_notificacao = models.DateTimeField(null=True, blank=True)
+    notificado_3_dias = models.BooleanField(default=False)
+    notificado_1_dia = models.BooleanField(default=False)
+    data_notificacao_3_dias = models.DateTimeField(null=True, blank=True)
+    data_notificacao_1_dia = models.DateTimeField(null=True, blank=True)
     
     criado_em = models.DateTimeField(auto_now_add=True)
 
