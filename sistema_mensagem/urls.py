@@ -36,4 +36,8 @@ urlpatterns = [
     
     # Páginas de exclusão
     path('listagem/donos/<int:id>/deletar/', deletar_dono, name='deletar_dono'),
+    path('listagem/especies/<int:id>/deletar/', deletar_especie, name='deletar_especie'),
+    path('listagem/pets/<int:id>/deletar/', deletar_pet, name='deletar_pet'),
+    path('listagem/vacinas/<int:id>/deletar/', deletar_vacina, name='deletar_vacina'),
+    path('listagem/vacinacoes/<int:id>/deletar/', deletar_vacinacao, name='deletar_vacinacao'),
 ]
