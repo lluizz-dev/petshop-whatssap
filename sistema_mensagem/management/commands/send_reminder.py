@@ -52,7 +52,7 @@ Procure a clínica para manter tudo em dia!
                 v.data_notificacao = timezone.now()
                 v.save()
 
-                print(f"Mensagem enviada para {numero}")
+                print(f"Mensagem enviada para {numero} as {v.data_notificacao}")
 
             except Exception as e:
-                print(f"Erro ao enviar para {numero}: {e}")
+                print(f"Erro ao enviar para {numero} as {timezone.now()}: {e}")
