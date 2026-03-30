@@ -12,8 +12,8 @@ def dashboard(request):
     hoje = timezone.localdate()
     amanha = hoje + timedelta(days=1)
 
-    vacinas_amanha = Vacinacao.objects.filter(data_proxima=amanha, notificado=False)
-    vacinas_atrasadas = Vacinacao.objects.filter(data_proxima__lt=hoje, notificado=False)
+    vacinas_amanha = Vacinacao.objects.filter(data_proxima=amanha, notificado_1_dia=False)
+    vacinas_atrasadas = Vacinacao.objects.filter(data_proxima__lt=hoje, notificado_1_dia=False)
 
     context = {
         'amanha': vacinas_amanha,
@@ -167,9 +167,10 @@ def detalhar_vacinacao(request, id):
         ('Vacina', vacinacao.vacina.nome),
         ('Data de Aplicação', vacinacao.data_aplicada.strftime('%d/%m/%Y')),
         ('Data Próxima', vacinacao.data_proxima.strftime('%d/%m/%Y') if vacinacao.data_proxima else 'N/A'),
-        ('Notificado', 'Sim' if vacinacao.notificado else 'Não'),
-        ('Data Notificação', vacinacao.data_notificacao.strftime('%d/%m/%Y %H:%M') if vacinacao.data_notificacao else 'N/A'),
-        
+        ('Notificado 1 dia antes', 'Sim' if vacinacao.notificado_1_dia else 'Não'),
+        ('Data Notificação 1 dia antes', vacinacao.data_notificacao_1_dia.strftime('%d/%m/%Y %H:%M') if vacinacao.data_notificacao_1_dia else 'N/A'),
+        ('Notificado 3 dias antes', 'Sim' if vacinacao.notificado_3_dias else 'Não'),
+        ('Data Notificação 3 dias antes', vacinacao.data_notificacao_3_dias.strftime('%d/%m/%Y %H:%M') if vacinacao.data_notificacao_3_dias else 'N/A'),
     ]
     return render(request, 'sistema_mensagem/detalhe.html', {
         'titulo': f'Vacinação: {vacinacao.pet.nome} - {vacinacao.vacina.nome}',
