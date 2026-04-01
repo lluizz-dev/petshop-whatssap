@@ -36,7 +36,6 @@ class Command(BaseCommand):
             vacinado=False
         )
         
-        
         if not vacinas_1_dia.exists() and not vacinas_3_dias.exists():
             print("Nenhum lembrete.")
             return

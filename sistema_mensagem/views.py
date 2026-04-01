@@ -10,10 +10,12 @@ def dashboard(request):
     hoje = timezone.localdate()
     amanha = hoje + timedelta(days=1)
 
-    vacinas_amanha = Vacinacao.objects.filter(data_proxima=amanha, notificado_1_dia=False)
-    vacinas_atrasadas = Vacinacao.objects.filter(data_proxima__lt=hoje, notificado_1_dia=False)
+    vacinas_hoje = Vacinacao.objects.filter(data_proxima=hoje, vacinado=False)
+    vacinas_amanha = Vacinacao.objects.filter(data_proxima=amanha, vacinado=False)
+    vacinas_atrasadas = Vacinacao.objects.filter(data_proxima__lt=hoje, vacinado=False)
 
     context = {
+        'hoje': vacinas_hoje,
         'amanha': vacinas_amanha,
         'atrasadas': vacinas_atrasadas
     }
