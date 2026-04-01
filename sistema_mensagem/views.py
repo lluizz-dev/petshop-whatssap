@@ -1,5 +1,3 @@
-from urllib import request
-
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from datetime import timedelta
