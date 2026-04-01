@@ -27,3 +27,8 @@ class VacinacaoForm(forms.ModelForm):
     class Meta:
         model = Vacinacao
         fields = ['pet', 'vacina', 'data_aplicada']
+        
+class VacinacaoUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Vacinacao
+        fields = ['pet', 'vacina', 'data_aplicada', 'vacinado']

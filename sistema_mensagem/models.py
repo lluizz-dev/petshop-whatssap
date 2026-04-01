@@ -52,6 +52,8 @@ class Vacinacao(models.Model):
     data_notificacao_1_dia = models.DateTimeField(null=True, blank=True)
     
     criado_em = models.DateTimeField(auto_now_add=True)
+    
+    vacinado = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if self.data_aplicada and self.vacina:

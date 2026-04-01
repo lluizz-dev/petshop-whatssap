@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from datetime import timedelta
 from .models import Dono, Especie, Pet, Vacina, Vacinacao
-from .forms import DonoForm, EspecieForm, PetForm, VacinaForm, VacinacaoForm
+from .forms import DonoForm, EspecieForm, PetForm, VacinaForm, VacinacaoForm, VacinacaoUpdateForm
 
 # Create your views here.
 
@@ -171,6 +171,7 @@ def detalhar_vacinacao(request, id):
         ('Data Notificação 1 dia antes', vacinacao.data_notificacao_1_dia.strftime('%d/%m/%Y %H:%M') if vacinacao.data_notificacao_1_dia else 'N/A'),
         ('Notificado 3 dias antes', 'Sim' if vacinacao.notificado_3_dias else 'Não'),
         ('Data Notificação 3 dias antes', vacinacao.data_notificacao_3_dias.strftime('%d/%m/%Y %H:%M') if vacinacao.data_notificacao_3_dias else 'N/A'),
+        ('Vacinado', 'Sim' if vacinacao.vacinado else 'Não'),
     ]
     return render(request, 'sistema_mensagem/detalhe.html', {
         'titulo': f'Vacinação: {vacinacao.pet.nome} - {vacinacao.vacina.nome}',
@@ -231,7 +232,7 @@ def editar_vacina(request, id):
     
 def editar_vacinacao(request, id):
     vacinacao = get_object_or_404(Vacinacao, id=id)
-    form = VacinacaoForm(request.POST or None, instance=vacinacao)
+    form = VacinacaoUpdateForm(request.POST or None, instance=vacinacao)
 
     if form.is_valid():
         form.save()

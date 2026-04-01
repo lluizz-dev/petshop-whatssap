@@ -26,12 +26,14 @@ class Command(BaseCommand):
         
         vacinas_1_dia = Vacinacao.objects.filter(
             data_proxima=amanha,
-            notificado_1_dia=False
+            notificado_1_dia=False,
+            vacinado=False
         )
 
         vacinas_3_dias = Vacinacao.objects.filter(
             data_proxima=tres_dias,
-            notificado_3_dias=False
+            notificado_3_dias=False,
+            vacinado=False
         )
         
         if not vacinas_1_dia.exists() and not vacinas_3_dias.exists():
