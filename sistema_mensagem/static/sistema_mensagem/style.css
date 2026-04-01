@@ -112,6 +112,16 @@ body {
     padding-left: 1rem;
 }
 
+.section-title.today {
+    border-left-color: #facc15;
+    color: #1e293b;
+}
+
+.section-title.today::before {
+    content: "📅";
+    font-size: 1.5rem;
+}
+
 .section-title.tomorrow {
     border-left-color: #3b82f6;
     color: #1e293b;

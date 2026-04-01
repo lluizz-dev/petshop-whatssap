@@ -22,6 +22,25 @@
     </div>
 
         <div class="dashboard-content">
+            <!-- Vacinas para hoje -->
+            <div class="section">
+                <div class="section-title today">
+                    Vacinas para hoje
+                </div>
+                <ul class="vaccine-list">
+                    {% for v in hoje %}
+                        <li class="vaccine-item">
+                            <div class="vaccine-info">
+                                <span class="pet-name">{{ v.pet.nome }}</span>
+                                <span class="vaccine-name">{{ v.vacina.nome }}</span>
+                            </div>
+                            <span class="status-badge today">📅 Hoje</span>
+                        </li>
+                    {% empty %}
+                        <li class="empty-message">🎉 Nenhuma vacina programada para hoje. Tudo em dia!</li>
+                    {% endfor %}
+                </ul>
+            </div>
             <!-- Vacinas para amanhã -->
             <div class="section">
                 <div class="section-title tomorrow">
