@@ -49,7 +49,7 @@ A vacina do *{v.pet.nome}* {v.pet.especie.emojis} vence em {v.data_proxima.strft
 
 Para manter a saúde dele(a) em dia 🐶🐈, recomendamos agendar a próxima dose.
 
-Fale com {os.getenv('NUMERO_SUPORTE')} para marcar!
+> Esse número não responde mensagens, Fale com {os.getenv('NUMERO_SUPORTE')} para marcar!
 """
 
                 numero = f"whatsapp:+55{v.pet.dono.telefone}"
@@ -77,7 +77,7 @@ A vacina do *{v.pet.nome}* {v.pet.especie.emojis} vence em {v.data_proxima.strft
 
 Para manter a saúde dele(a) em dia 🐶🐈, recomendamos agendar a próxima dose.
 
-Fale com {os.getenv('NUMERO_SUPORTE')} para marcar!
+> Esse número não responde mensagens, Fale com {os.getenv('NUMERO_SUPORTE')} para marcar!
 """
 
                 numero = f"whatsapp:+55{v.pet.dono.telefone}"

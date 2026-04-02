@@ -12,6 +12,12 @@
         <div class="dashboard-header">
         <h1>Dashboard</h1>
         <div class="header-buttons">
+            <form action="{% url 'enviar_lembretes' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn-lembretes">
+                    📨 Enviar Lembretes
+                </button>
+            </form>
             <a href="{% url 'cadastro_home' %}" class="btn-cadastro">
                 ➕ Cadastro
             </a>

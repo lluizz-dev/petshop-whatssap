@@ -40,4 +40,6 @@ urlpatterns = [
     path('listagem/pets/<int:id>/deletar/', deletar_pet, name='deletar_pet'),
     path('listagem/vacinas/<int:id>/deletar/', deletar_vacina, name='deletar_vacina'),
     path('listagem/vacinacoes/<int:id>/deletar/', deletar_vacinacao, name='deletar_vacinacao'),
+    
+    path('enviar_lembretes/', enviar_lembretes, name='enviar_lembretes'),
 ]

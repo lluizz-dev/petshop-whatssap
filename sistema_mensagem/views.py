@@ -1,8 +1,10 @@
+from pyexpat.errors import messages
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from datetime import timedelta
 from .models import Dono, Especie, Pet, Vacina, Vacinacao
 from .forms import DonoForm, EspecieForm, PetForm, VacinaForm, VacinacaoForm, VacinacaoUpdateForm
+from django.core.management import call_command
 
 # Create your views here.
 
@@ -21,6 +23,12 @@ def dashboard(request):
     }
 
     return render(request, 'sistema_mensagem/dashboard.html', context)
+
+def enviar_lembretes(request):
+    if request.method == 'POST':
+        call_command('send_reminder')
+        return redirect('dashboard') 
+    return redirect('dashboard')
 
 def cadastro_home(request):
     return render(request, 'sistema_mensagem/cadastro_home.html')
