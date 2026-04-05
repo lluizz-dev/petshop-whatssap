@@ -35,3 +35,6 @@ static_collected/
 .idea/
 .vscode/
 *.swp
+
+.env
+db.sqlite3
