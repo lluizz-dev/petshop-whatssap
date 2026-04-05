@@ -57,56 +57,23 @@ O envio de mensagens via WhatsApp é feito através do **Twilio**, uma plataform
 
 ## 🐳 Recomendação: usar Docker (opcional mas recomendado)
 
-Se você tiver o Docker instalado, pode subir o projeto inteiro (Django + PostgreSQL) com um único comando, sem precisar instalar o Python ou o banco de dados manualmente.
+O projeto já inclui um `docker-compose.yml` pronto. Se você tiver o Docker instalado, pode subir o banco de dados com um único comando, sem precisar instalar o PostgreSQL manualmente.
 
 - 🔗 [Instalar Docker](https://docs.docker.com/get-docker/)
 
-Crie um arquivo `docker-compose.yml` na raiz do projeto:
+Para subir apenas o banco de dados:
 
-```yaml
-services:
-  db:
-    image: postgres:16
-    environment:
-      POSTGRES_DB: petshop
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    ports:
-      - "5432:5432"
-
-  web:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/app
-    ports:
-      - "8000:8000"
-    env_file:
-      - .env
-    depends_on:
-      - db
+```bash
+docker compose up -d
 ```
 
-E um `Dockerfile` na raiz:
-
-```dockerfile
-FROM python:3.13-slim
-
-WORKDIR /app
-
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
-```
-
-Para subir:
+Para subir tudo (banco + aplicação):
 
 ```bash
 docker compose up --build
 ```
 
-> Com Docker, o `POSTGRES_HOST` no seu `.env` deve ser `db` (nome do serviço), não `localhost`.
+> **Atenção:** com Docker, o `POSTGRES_HOST` no seu `.env` deve ser `postgres` (nome do serviço definido no `docker-compose.yml`), não `localhost`.
 
 ---
 
