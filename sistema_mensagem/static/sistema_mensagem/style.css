@@ -55,6 +55,28 @@ body {
     justify-content: center;
 }
 
+.btn-logout {
+    background: #ef4444;
+    color: white;
+    font-weight: 600;
+    padding: 0.6rem 1.2rem;
+    border-radius: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.btn-logout:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
 .btn-lembretes {
     background: #e9edf2;
     color: #1e293b;

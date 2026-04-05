@@ -12,6 +12,12 @@
         <div class="dashboard-header">
         <h1>Dashboard</h1>
         <div class="header-buttons">
+            <form action="{% url 'logout' %}" method="POST">
+            {% csrf_token %}
+                <button type="submit" class="btn-logout">
+                    🚪 Sair
+                </button>
+            </form>
             <form action="{% url 'enviar_lembretes' %}" method="POST">
                 {% csrf_token %}
                 <button type="submit" class="btn-lembretes">

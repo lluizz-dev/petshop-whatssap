@@ -1,7 +1,12 @@
 from django.urls import path
+from django.contrib.auth import views as auth_views
 from .views import *
 
 urlpatterns = [
+    # Login / Logout
+    path('login/', login_view, name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+
     # Dashboard
     path('', dashboard, name='dashboard'),
     

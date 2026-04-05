@@ -1,4 +1,5 @@
-from pyexpat.errors import messages
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from datetime import timedelta
@@ -6,8 +7,34 @@ from .models import Dono, Especie, Pet, Vacina, Vacinacao
 from .forms import DonoForm, EspecieForm, PetForm, VacinaForm, VacinacaoForm, VacinacaoUpdateForm
 from django.core.management import call_command
 
-# Create your views here.
 
+# ─────────────────────────────────────────────
+# Autenticação (sem @login_required)
+# ─────────────────────────────────────────────
+
+def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')
+        else:
+            return render(request, 'sistema_mensagem/login.html', {'erro': True})
+
+    return render(request, 'sistema_mensagem/login.html')
+
+
+# ─────────────────────────────────────────────
+# Dashboard
+# ─────────────────────────────────────────────
+
+@login_required
 def dashboard(request):
     hoje = timezone.localdate()
     amanha = hoje + timedelta(days=1)
@@ -24,15 +51,27 @@ def dashboard(request):
 
     return render(request, 'sistema_mensagem/dashboard.html', context)
 
+
+# ─────────────────────────────────────────────
+# Lembretes
+# ─────────────────────────────────────────────
+
+@login_required
 def enviar_lembretes(request):
     if request.method == 'POST':
         call_command('send_reminder')
-        return redirect('dashboard') 
     return redirect('dashboard')
 
+
+# ─────────────────────────────────────────────
+# Cadastro
+# ─────────────────────────────────────────────
+
+@login_required
 def cadastro_home(request):
     return render(request, 'sistema_mensagem/cadastro_home.html')
 
+@login_required
 def cadastrar_dono(request):
     form = DonoForm(request.POST or None)
     if form.is_valid():
@@ -40,6 +79,7 @@ def cadastrar_dono(request):
         return redirect('cadastro_home')
     return render(request, 'sistema_mensagem/form.html', {'form': form, 'titulo': 'Cadastrar Dono'})
 
+@login_required
 def cadastrar_especie(request):
     form = EspecieForm(request.POST or None)
     if form.is_valid():
@@ -47,7 +87,7 @@ def cadastrar_especie(request):
         return redirect('cadastro_home')
     return render(request, 'sistema_mensagem/form.html', {'form': form, 'titulo': 'Cadastrar Espécie'})
 
-
+@login_required
 def cadastrar_pet(request):
     form = PetForm(request.POST or None)
     if form.is_valid():
@@ -55,7 +95,7 @@ def cadastrar_pet(request):
         return redirect('cadastro_home')
     return render(request, 'sistema_mensagem/form.html', {'form': form, 'titulo': 'Cadastrar Pet'})
 
-
+@login_required
 def cadastrar_vacina(request):
     form = VacinaForm(request.POST or None)
     if form.is_valid():
@@ -63,7 +103,7 @@ def cadastrar_vacina(request):
         return redirect('cadastro_home')
     return render(request, 'sistema_mensagem/form.html', {'form': form, 'titulo': 'Cadastrar Vacina'})
 
-
+@login_required
 def cadastrar_vacinacao(request):
     form = VacinacaoForm(request.POST or None)
     if form.is_valid():
@@ -71,52 +111,58 @@ def cadastrar_vacinacao(request):
         return redirect('cadastro_home')
     return render(request, 'sistema_mensagem/form.html', {'form': form, 'titulo': 'Cadastrar Vacinação'})
 
+
+# ─────────────────────────────────────────────
+# Listagem
+# ─────────────────────────────────────────────
+
+@login_required
 def listagem_home(request):
     return render(request, 'sistema_mensagem/listagem_home.html')
 
+@login_required
 def listar_donos(request):
-    donos = Dono.objects.all()
-
     return render(request, 'sistema_mensagem/listar.html', {
-        'objetos': donos,
+        'objetos': Dono.objects.all(),
         'titulo': '👤 Lista de Donos',
     })
 
+@login_required
 def listar_especies(request):
-    especies = Especie.objects.all()
-
     return render(request, 'sistema_mensagem/listar.html', {
-        'objetos': especies,
-        'titulo': '🐾 Lista de Espécies'
+        'objetos': Especie.objects.all(),
+        'titulo': '🐾 Lista de Espécies',
     })
 
+@login_required
 def listar_pets(request):
-    pets = Pet.objects.select_related('dono', 'especie')
-
     return render(request, 'sistema_mensagem/listar.html', {
-        'objetos': pets,
-        'titulo': '🐶 Lista de Pets'
+        'objetos': Pet.objects.select_related('dono', 'especie'),
+        'titulo': '🐶 Lista de Pets',
     })
 
+@login_required
 def listar_vacinas(request):
-    vacinas = Vacina.objects.all()
-    
     return render(request, 'sistema_mensagem/listar.html', {
-        'objetos': vacinas,
-        'titulo': '💉 Lista de Vacinas'
+        'objetos': Vacina.objects.all(),
+        'titulo': '💉 Lista de Vacinas',
     })
 
+@login_required
 def listar_vacinacoes(request):
-    vacinacoes = Vacinacao.objects.all()
-    
     return render(request, 'sistema_mensagem/listar.html', {
-        'objetos': vacinacoes,
-        'titulo': '📅 Lista de Vacinações'
+        'objetos': Vacinacao.objects.all(),
+        'titulo': '📅 Lista de Vacinações',
     })
-    
+
+
+# ─────────────────────────────────────────────
+# Detalhes
+# ─────────────────────────────────────────────
+
+@login_required
 def detalhar_dono(request, id):
     dono = get_object_or_404(Dono, id=id)
-    # Criar lista de campos para exibir
     campos = [
         ('Nome', dono.nome),
         ('Telefone', dono.telefone),
@@ -128,10 +174,10 @@ def detalhar_dono(request, id):
         'titulo': f'Dono: {dono.nome}',
         'campos': campos,
     })
-    
+
+@login_required
 def detalhar_especie(request, id):
     especie = get_object_or_404(Especie, id=id)
-    # Criar lista de campos para exibir
     campos = [
         ('Nome', especie.nome),
         ('Emojis', especie.emojis),
@@ -140,10 +186,10 @@ def detalhar_especie(request, id):
         'titulo': f'Especie: {especie.nome}',
         'campos': campos,
     })
-    
+
+@login_required
 def detalhar_pet(request, id):
     pet = get_object_or_404(Pet, id=id)
-    # Criar lista de campos para exibir
     campos = [
         ('Nome', pet.nome),
         ('Espécie', pet.especie.nome),
@@ -153,10 +199,10 @@ def detalhar_pet(request, id):
         'titulo': f'Pet: {pet.nome}',
         'campos': campos,
     })
-    
+
+@login_required
 def detalhar_vacina(request, id):
     vacina = get_object_or_404(Vacina, id=id)
-    # Criar lista de campos para exibir
     campos = [
         ('Nome', vacina.nome),
         ('Periodicidade (dias)', vacina.periodicidade_dias),
@@ -166,137 +212,117 @@ def detalhar_vacina(request, id):
         'campos': campos,
     })
 
+@login_required
 def detalhar_vacinacao(request, id):
     vacinacao = get_object_or_404(Vacinacao, id=id)
-    # Criar lista de campos para exibir
     campos = [
         ('Pet', vacinacao.pet.nome),
         ('Dono', vacinacao.pet.dono.nome),
         ('Vacina', vacinacao.vacina.nome),
+        ('Vacinado', 'Sim' if vacinacao.vacinado else 'Não'),
         ('Data de Aplicação', vacinacao.data_aplicada.strftime('%d/%m/%Y')),
         ('Data Próxima', vacinacao.data_proxima.strftime('%d/%m/%Y') if vacinacao.data_proxima else 'N/A'),
         ('Notificado 1 dia antes', 'Sim' if vacinacao.notificado_1_dia else 'Não'),
         ('Data Notificação 1 dia antes', vacinacao.data_notificacao_1_dia.strftime('%d/%m/%Y %H:%M') if vacinacao.data_notificacao_1_dia else 'N/A'),
         ('Notificado 3 dias antes', 'Sim' if vacinacao.notificado_3_dias else 'Não'),
         ('Data Notificação 3 dias antes', vacinacao.data_notificacao_3_dias.strftime('%d/%m/%Y %H:%M') if vacinacao.data_notificacao_3_dias else 'N/A'),
-        ('Vacinado', 'Sim' if vacinacao.vacinado else 'Não'),
     ]
     return render(request, 'sistema_mensagem/detalhe.html', {
         'titulo': f'Vacinação: {vacinacao.pet.nome} - {vacinacao.vacina.nome}',
         'campos': campos,
     })
 
+
+# ─────────────────────────────────────────────
+# Edição
+# ─────────────────────────────────────────────
+
+@login_required
 def editar_dono(request, id):
     dono = get_object_or_404(Dono, id=id)
     form = DonoForm(request.POST or None, instance=dono)
-
     if form.is_valid():
         form.save()
         return redirect('listar_donos')
+    return render(request, 'sistema_mensagem/form.html', {'form': form, 'titulo': f'✏️ Editar Dono: {dono.nome}'})
 
-    return render(request, 'sistema_mensagem/form.html', {
-        'form': form,
-        'titulo': f'✏️ Editar Dono: {dono.nome}'
-    })
-    
+@login_required
 def editar_pet(request, id):
     pet = get_object_or_404(Pet, id=id)
     form = PetForm(request.POST or None, instance=pet)
-
     if form.is_valid():
         form.save()
         return redirect('listar_pets')
+    return render(request, 'sistema_mensagem/form.html', {'form': form, 'titulo': f'✏️ Editar Pet: {pet.nome}'})
 
-    return render(request, 'sistema_mensagem/form.html', {
-        'form': form,
-        'titulo': f'✏️ Editar Pet: {pet.nome}'
-    })
-    
+@login_required
 def editar_especie(request, id):
     especie = get_object_or_404(Especie, id=id)
     form = EspecieForm(request.POST or None, instance=especie)
-
     if form.is_valid():
         form.save()
         return redirect('listar_especies')
+    return render(request, 'sistema_mensagem/form.html', {'form': form, 'titulo': f'✏️ Editar Espécie: {especie.nome}'})
 
-    return render(request, 'sistema_mensagem/form.html', {
-        'form': form,
-        'titulo': f'✏️ Editar Espécie: {especie.nome}'
-    })
-    
+@login_required
 def editar_vacina(request, id):
     vacina = get_object_or_404(Vacina, id=id)
     form = VacinaForm(request.POST or None, instance=vacina)
-
     if form.is_valid():
         form.save()
         return redirect('listar_vacinas')
+    return render(request, 'sistema_mensagem/form.html', {'form': form, 'titulo': f'✏️ Editar Vacina: {vacina.nome}'})
 
-    return render(request, 'sistema_mensagem/form.html', {
-        'form': form,
-        'titulo': f'✏️ Editar Vacina: {vacina.nome}'
-    })
-    
+@login_required
 def editar_vacinacao(request, id):
     vacinacao = get_object_or_404(Vacinacao, id=id)
     form = VacinacaoUpdateForm(request.POST or None, instance=vacinacao)
-
     if form.is_valid():
         form.save()
         return redirect('listar_vacinacoes')
+    return render(request, 'sistema_mensagem/form.html', {'form': form, 'titulo': f'✏️ Editar Vacinação: {vacinacao.pet.nome} - {vacinacao.vacina.nome}'})
 
-    return render(request, 'sistema_mensagem/form.html', {
-        'form': form,
-        'titulo': f'✏️ Editar Vacinação: {vacinacao.pet.nome} - {vacinacao.vacina.nome}'
-    })
-    
+
+# ─────────────────────────────────────────────
+# Exclusão
+# ─────────────────────────────────────────────
+
+@login_required
 def deletar_dono(request, id):
     dono = get_object_or_404(Dono, id=id)
     if request.method == 'POST':
         dono.delete()
         return redirect('listar_donos')
-    return render(request, 'sistema_mensagem/confirmar_delecao.html', {
-        'objeto': dono,
-        'titulo': f'Confirmar exclusão: {dono.nome}'
-    })
-    
+    return render(request, 'sistema_mensagem/confirmar_delecao.html', {'objeto': dono, 'titulo': f'Confirmar exclusão: {dono.nome}'})
+
+@login_required
 def deletar_pet(request, id):
     pet = get_object_or_404(Pet, id=id)
     if request.method == 'POST':
         pet.delete()
         return redirect('listar_pets')
-    return render(request, 'sistema_mensagem/confirmar_delecao.html', {
-        'objeto': pet,
-        'titulo': f'Confirmar exclusão: {pet.nome}'
-    })
+    return render(request, 'sistema_mensagem/confirmar_delecao.html', {'objeto': pet, 'titulo': f'Confirmar exclusão: {pet.nome}'})
 
+@login_required
 def deletar_especie(request, id):
     especie = get_object_or_404(Especie, id=id)
     if request.method == 'POST':
         especie.delete()
         return redirect('listar_especies')
-    return render(request, 'sistema_mensagem/confirmar_delecao.html', {
-        'objeto': especie,
-        'titulo': f'Confirmar exclusão: {especie.nome}'
-    })
+    return render(request, 'sistema_mensagem/confirmar_delecao.html', {'objeto': especie, 'titulo': f'Confirmar exclusão: {especie.nome}'})
 
+@login_required
 def deletar_vacina(request, id):
     vacina = get_object_or_404(Vacina, id=id)
     if request.method == 'POST':
         vacina.delete()
         return redirect('listar_vacinas')
-    return render(request, 'sistema_mensagem/confirmar_delecao.html', {
-        'objeto': vacina,
-        'titulo': f'Confirmar exclusão: {vacina.nome}'
-    })
+    return render(request, 'sistema_mensagem/confirmar_delecao.html', {'objeto': vacina, 'titulo': f'Confirmar exclusão: {vacina.nome}'})
 
+@login_required
 def deletar_vacinacao(request, id):
     vacinacao = get_object_or_404(Vacinacao, id=id)
     if request.method == 'POST':
         vacinacao.delete()
         return redirect('listar_vacinacoes')
-    return render(request, 'sistema_mensagem/confirmar_delecao.html', {
-        'objeto': vacinacao,
-        'titulo': f'Confirmar exclusão: {vacinacao.pet.nome} - {vacinacao.vacina.nome}'
-    })
+    return render(request, 'sistema_mensagem/confirmar_delecao.html', {'objeto': vacinacao, 'titulo': f'Confirmar exclusão: {vacinacao.pet.nome} - {vacinacao.vacina.nome}'})
