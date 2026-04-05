@@ -54,6 +54,11 @@
                         🔐 Entrar
                     </button>
                 </form>
+                {% if erro %}
+                    <div class="login-error">
+                        ⚠️ Usuário ou senha incorretos. Tente novamente.
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
