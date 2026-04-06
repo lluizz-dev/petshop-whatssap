@@ -47,4 +47,6 @@ urlpatterns = [
     path('listagem/vacinacoes/<int:id>/deletar/', deletar_vacinacao, name='deletar_vacinacao'),
     
     path('enviar_lembretes/', enviar_lembretes, name='enviar_lembretes'),
+    
+    path('atrasadas/', enviar_lembretes_atrasados, name='enviar_lembretes_atrasados')
 ]

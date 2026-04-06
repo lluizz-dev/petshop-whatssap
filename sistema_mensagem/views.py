@@ -6,6 +6,7 @@ from datetime import timedelta
 from .models import Dono, Especie, Pet, Vacina, Vacinacao
 from .forms import DonoForm, EspecieForm, PetForm, VacinaForm, VacinacaoForm, VacinacaoUpdateForm
 from django.core.management import call_command
+from management.commands.send_reminder import enviar_lembretes_atrasados
 
 
 # ─────────────────────────────────────────────
@@ -62,6 +63,22 @@ def enviar_lembretes(request):
         call_command('send_reminder')
     return redirect('dashboard')
 
+@login_required
+def enviar_lembretes_atrasados(request, id):
+    hoje = timezone.localdate()
+    atrasadas = Vacinacao.objects.filter(data_proxima__lt=hoje, vacinado=False)
+    
+    if request.method == 'POST':
+        ids_selecionados = request.POST.getlist('vacinacoes')  # lista de ids marcados
+        vacinacoes = Vacinacao.objects.filter(id__in=ids_selecionados)
+        
+        enviar_lembretes_atrasados(vacinacoes)
+
+        return ('dashboard')
+
+    return render(request, 'sistema_mensagem/lembretes_atrasados.html', {
+        'atrasadas': atrasadas,
+    })
 
 # ─────────────────────────────────────────────
 # Cadastro
