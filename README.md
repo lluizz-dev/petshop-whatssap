@@ -55,21 +55,37 @@ O envio de mensagens via WhatsApp é feito através do **Twilio**, uma plataform
 
 ---
 
-## 🐳 Recomendação: usar Docker (opcional mas recomendado)
+## 🐳 Docker
 
-O projeto já inclui um `docker-compose.yml` pronto. Se você tiver o Docker instalado, pode subir o banco de dados com um único comando, sem precisar instalar o PostgreSQL manualmente.
+O projeto inclui tanto um `Dockerfile` quanto um `docker-compose.yml`, cobrindo dois cenários diferentes:
 
-- 🔗 [Instalar Docker](https://docs.docker.com/get-docker/)
+### Dockerfile — build da aplicação
 
-Para subir apenas o banco de dados:
+O `Dockerfile` define a imagem da aplicação Django. Ele usa a imagem `python:3.13-slim` como base, instala as dependências do projeto e expõe a porta `8000`.
+
+Para construir a imagem manualmente:
 
 ```bash
-docker compose up -d
+docker build -t petshop .
 ```
 
-Para subir tudo (banco + aplicação):
+Para rodar o container:
 
 ```bash
+docker run --env-file .env -p 8000:8000 petshop
+```
+
+> **Atenção:** ao rodar dessa forma, o banco de dados precisa estar acessível externamente. Para uma configuração completa com banco incluído, use o `docker-compose`.
+
+### docker-compose — ambiente completo
+
+O `docker-compose.yml` sobe a aplicação junto com o PostgreSQL de forma integrada:
+
+```bash
+# Apenas o banco de dados
+docker compose up -d
+
+# Tudo (banco + aplicação)
 docker compose up --build
 ```
 
@@ -170,6 +186,8 @@ petshop/
 │   └── views.py
 ├── .env                      # Não versionado
 ├── .gitignore
+├── Dockerfile
+├── docker-compose.yml
 ├── manage.py
 └── requirements.txt
 ```
