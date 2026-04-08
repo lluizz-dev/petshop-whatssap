@@ -6,7 +6,7 @@ from datetime import timedelta
 from .models import Dono, Especie, Pet, Vacina, Vacinacao
 from .forms import DonoForm, EspecieForm, PetForm, VacinaForm, VacinacaoForm, VacinacaoUpdateForm
 from django.core.management import call_command
-from management.commands.send_reminder import enviar_lembretes_atrasados
+from sistema_mensagem.management.commands.send_reminder import enviar_lembretes_atrasados
 
 
 # ─────────────────────────────────────────────
@@ -78,7 +78,8 @@ def enviar_lembretes_atrasados(request, id):
 
     return render(request, 'sistema_mensagem/lembretes_atrasados.html', {
         'atrasadas': atrasadas,
-    })
+    })          
+
 
 # ─────────────────────────────────────────────
 # Cadastro
