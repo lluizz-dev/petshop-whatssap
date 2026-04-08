@@ -208,6 +208,14 @@ Para agendar no Linux (todo dia às 8h):
 
 ---
 
+## 📽️ Vídeo Demonstrativo
+
+Confira o sistema em funcionamento no LinkedIn:
+
+[![Assistir demonstração](https://img.shields.io/badge/LinkedIn-Assistir%20demonstração-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/posts/lluizz-dev_python-django-whatsapp-activity-7447623019994320896-V2cd?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF2wZiQB_zbGxdvvzaK1n9gmzch6qWPBxkk)
+
+---
+
 ## 📝 Licença
 
 Este projeto foi desenvolvido para uso interno de um petshop. Todos os direitos reservados.
